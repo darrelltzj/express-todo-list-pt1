@@ -1,0 +1,28 @@
+<table id="todo" class="table">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Completed</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+          <% todos.forEach(function(todo) { %>
+            <tr>
+              <td>
+              <%= todo.name %>
+              </td>
+              <td>
+              <%= todo.description %>
+              </td>
+              <td>
+              <%= todo.completed %>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <form action="/todos/create" method="get">
+        <button type="submit">Create</button>
+        </form>
