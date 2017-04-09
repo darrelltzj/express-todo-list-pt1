@@ -5,21 +5,21 @@ mongoose.connect('mongodb://localhost/todo-list')
 mongoose.Promise = global.Promise
 
 // TODO. include express and body-parser, plugin in the todos controller and start listening
-var express = require('express')
-var app = express()
-var port = 3000
+const express = require('express')
+const app = express()
 
 // Layout structure settings
-var ejsLayouts = require('express-ejs-layouts')
+const ejsLayouts = require('express-ejs-layouts')
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+app.use(express.static(__dirname + '/public'))
 
 // Post request handler
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({extended: false}))
 
+var methodOverride = require('method-override')
+app.use(methodOverride('_method'))
 app.use('/todos', todosController)
 
-app.listen(port, function () {
-  console.log('express is running on port ' + port)
-})
+app.listen(3000)

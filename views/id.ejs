@@ -1,0 +1,26 @@
+<table id="todo" class="table">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Completed</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+              <%= todo.name %>
+              </td>
+              <td>
+              <%= todo.description %>
+              </td>
+              <td>
+              <%= todo.completed %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <form action=<%= "/todos/" + todo._id + "/edit" %> method="get">
+        <button type="submit">Edit</button>
+        </form>

@@ -14,11 +14,9 @@ router.get('/create', function (req, res) {
   res.render('create')
 })
 
-router.post('/create', function (req, res) {
-  // console.log(req.body)
+router.post('/', function (req, res) {
   Todo.create(req.body, function (err, todo) {
     if (err) console.error(err)
-    // console.log(todo)
     todo.save()
     res.redirect('/todos')
   })
@@ -27,7 +25,6 @@ router.post('/create', function (req, res) {
 router.get('/', function (req, res) {
   Todo.find({}, function (err, todos) {
     if (err) console.error(err)
-    // console.log(todos)
     res.render('todo', {todos: todos})
   })
 })
@@ -35,8 +32,30 @@ router.get('/', function (req, res) {
 router.get('/:id', function (req, res) {
   Todo.findById(req.params.id, function (err, todo) {
     if (err) console.error(err)
-    // console.log(todo)
-    res.render('todo', {todos: [todo]})
+    res.render('id', {todo: todo})
+  })
+})
+
+router.get('/:id/edit', function (req, res) {
+  Todo.findById({ _id: req.params.id }, function (err, todo) {
+    if (err) console.error(err)
+    res.render('edit', {todo: todo})
+  })
+})
+
+router.put('/:id', function (req, res) {
+  Todo.findOneAndUpdate({
+    id: req.params._id
+  }, {
+    name: req.body.name,
+    description: req.body.description,
+    completed: req.body.completed
+  }, function (err, todo) {
+    if (err) console.error(err)
+    console.log(todo)
+    res.send({message: 'success'})
+    // res.redirect('/todos/' + todo.id)
+    // res.redirect('/todos/:id')
   })
 })
 

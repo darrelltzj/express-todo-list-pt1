@@ -1,6 +1,29 @@
+<table id="todo" class="table">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Completed</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+              <%= todo.name %>
+              </td>
+              <td>
+              <%= todo.description %>
+              </td>
+              <td>
+              <%= todo.completed %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 <div class="form-container">
-    <h2>Create</h2>
-    <form action="/todos" method="post">
+    <h2>Edit</h2>
+    <form action=<%= "/todos/" + todo._id%> id="put-form">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="Name">
@@ -16,6 +39,6 @@
               <option value="true">Yes</option>
             </select>
         </div>
-        <button type="submit">Add</button>
+        <button type="submit">Update</button>
     </form>
 </div>
